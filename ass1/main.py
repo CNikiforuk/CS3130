@@ -9,20 +9,18 @@ import db
 ################-----Author-----#################
 #Carlos Nikiforuk
 
-#IDEA FOR FUNCTIONIZING, PRINT WHATEVER IS RETURNED. TRY/EXCEPTS, OR SUCCESS MESSAGE, OR FAILURE
-
-ID, FIRST, LAST, DEPT = range(4)
-MAXNAMESIZE = 11
+ID, FIRST, LAST, DEPT = range(4)        #FIELD defines, 0-4
+MAXNAMESIZE = 11                        #Max name size, for first and last.
 
 def main():
 
     if len(sys.argv) == 1 or sys.argv[1] in {"-h", "--help"}:
         print("usage: {0} <db file>".format(sys.argv[0]))
         exit()
-    infile = sys.argv[1]
+    infile = sys.argv[1]        #check usage
     
-    try:
-        open(infile,'r')
+    try:                        #check specified file, prompt for creation
+        open(infile,'r')    
     except FileNotFoundError:
         print("Input file does not exist.")
         ans = input("Would you like to create it as a new database? (y/n)? ")
@@ -34,7 +32,7 @@ def main():
         print("Error: ",e)
             
 
-    db1 = db.database(infile)
+    db1 = db.database(infile)   #instantiate database class
     cont = True
     
     while(cont):
