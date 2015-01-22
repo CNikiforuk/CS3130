@@ -1,0 +1,17 @@
+Author: Carlos Nikiforuk
+CS 3130 Assignment #1
+Date: Jan 22, 2015
+
+https://github.com/CNikiforuk/CS3130/tree/master/ass1
+
+Description: Basic database program in Python. 
+
+How to use the program:
+1. python3 main.py <infile>
+
+
+Additional Information:
+
+-if input file does not exist, program will prompt for creation.
+
+
