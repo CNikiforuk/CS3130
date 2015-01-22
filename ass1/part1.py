@@ -1,19 +1,26 @@
 #!/usr/bin/env python3
 
 import os
+import sys
+import db
 
 #Author: Carlos Nikiforuk
 #Description: Basic employee database stored as txt file.
 
+#IDEA FOR FUNCTIONIZING, PRINT WHATEVER IS RETURNED. TRY/EXCEPTS, OR SUCCESS MESSAGE, OR FAILURE
 
+infile = 'db.txt'
 ID, FIRST, LAST, DEPT = range(4)
 MAXNAMESIZE = 16
-infile = 'db.txt'
 
 def main():
 
-    tmp = load(infile)
-    cont = 1
+    if len(sys.argv) == 1 or sys.argv[1] in {"-h", "--help"}:
+        print("usage: {0} file".format(sys.argv[0]))
+
+
+    db1 = db.database(infile)
+    cont = True
     
     while(cont):
     
@@ -34,101 +41,50 @@ def main():
             line = input("Enter employee string to add: ") #xxxx:first:last:dept
             line = line.rstrip()
             fields = line.split(":")
-            f = findEmployee(fields[ID])
-            if(len(fields[FIRST]) > MAXNAMESIZE or len(fields[LAST]) > MAXNAMESIZE or len(fields[DEPT]) > MAXNAMESIZE):
-                print("    Name or dept too long!")
-            elif(f == 0 and len(fields[ID]) == 4):
-                addEmployee(line)
-                print("    Employee ",fields[ID]," Added!")
-            else:
-                print("    Bad ID or duplicate entry")
+            f = db1.findEmployee(fields[ID])
+            try:
+                if(MAXNAMESIZE < max([len(fields[FIRST]), len(fields[LAST]), len(fields[DEPT])])):
+                    print("    Name or dept too long!")
+                elif(f == 0 and len(fields[ID]) == 4):
+                    db1.addEmployee(line)
+                    print("    Employee ",fields[ID]," Added!")
+                else:
+                    print("    Error: Bad ID or duplicate entry")
+            except IndexError:
+                print("    Error: Incomplete string!")
+            except Exception as e:
+                print("    Error: ",e)
 
         elif(a=='2'):   #search for employee
-            with input("Enter employee ID to find: ") as id:
-                f = findEmployee(id)
+            id = input("Enter employee ID to find: ")
+            f = db1.findEmployee(id)
             if(f == 0):
                 print("    Not found!")
             else:
                 print("{0:<4} {1:<{n}} {2:<15}".format("ID", "Name", "Dept", n=MAXNAMESIZE*2))
                 print("{0:-<4} {0:-<{n}} {0:-<15}".format("", n=MAXNAMESIZE*2))
-                printEmployee(f)
+                db1.printEmployee(f)
             
         elif(a=='3'):   #remove employee
-            with input("Enter employee ID to remove: ") as id:
-                f = findEmployee(id)
+            id = input("Enter employee ID to remove: ")
+            f = db1.findEmployee(id)
             if(f == 0):
                 print("    Employee not found!")
             else:
-                removeEmployee(f)
+                db1.removeEmployee(f)
                 print("    Employee ",id," removed!")
 
         elif(a=='4'):   #show employees
-            showEmployees()
+            db1.showEmployees()
 
         elif(a=='5'):    #quit
-            cont = 0
+            cont = False
         
         if(a != '5'):
             input("\nPress any key to continue")
 
 
-    tmp.close()
-    os.remove("~db.txt")
-
-##Functions
-
-def load(infile):
-    with open('db.txt', 'r') as file:
-        open('~db.txt', 'x')
-        with open('~db.txt', 'r+') as tmp:  
-            tmp.writelines(file)
-    file.close()
-    return tmp
-
-def addEmployee(line):
-     with open('db.txt', 'a') as file:
-        file.write(line+"\n")
-    
-def findEmployee(id):
-    with open('db.txt', 'r') as file:
-            for line in file:
-                line = line.rstrip()
-                if line:
-                    fields = line.split(":")
-                    if(fields[ID] == id):
-                        file.close()
-                        return fields  
-    return 0
-    
-
-def removeEmployee(f):
-        with open(infile, 'r') as file:
-            new = []
-            for line in file:
-                line = line.rstrip()
-                fields = line.split(":")
-                if(fields != f):
-                    new.append(line)
-        new.append("\n")
-        with open(infile, 'w') as file:
-            file.writelines(new)
-            file.close()
-            
-
-def showEmployees():
-    print("{0:<4} {1:<{n}} {2:<15}".format("ID", "Name", "Dept", n=MAXNAMESIZE*2))
-    print("{0:-<4} {0:-<{n}} {0:-<15}".format("", n=MAXNAMESIZE*2))
-    with open(infile, 'r') as file:
-            for line in file:
-                line = line.rstrip()
-                if line:
-                    fields = line.split(":")
-                    printEmployee(fields) 
-
-def printEmployee(fields):
-    print("{0:<4} {1:<{n}} {2:<{n}} {3:<15}".format(fields[ID], fields[FIRST], fields[LAST], fields[DEPT], n=MAXNAMESIZE))
+    #os.remove("~db.txt")
 
 
 main()
-
-
