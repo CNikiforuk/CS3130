@@ -86,8 +86,8 @@ class database:
                             fields = line.split(":")
                             if(fields[ID] == id):
                                 print("\nEmployee {0} Found!".format(fields[ID]))
-                                print("{0:<4} {1:<{n}} {2:<15}".format("ID", "Name", "Dept", n=MAXNAMESIZE*2))
-                                print("{0:-<4} {0:-<{n}} {0:-<15}".format("", n=MAXNAMESIZE*2))
+                                print("{0:<{i}} {1:<{n}} {2:<{d}}".format("ID", "Name", "Dept", n=MAXNAMESIZE*2, d=MAXNAMESIZE))
+                                print("{0:-<{i}} {0:-<{n}} {0:-<{d}}".format("", n=MAXNAMESIZE*2, d=MAXNAMESIZE))
                                 self.printEmployee(fields)
                                 return
 
@@ -124,7 +124,6 @@ class database:
     #Remove employee from database, fields passed
     ##################################
         try:
-
             id = input("\nEnter employee ID to remove: ")
             f = self.getEmployee(id)
             if(f == 0):
@@ -132,8 +131,8 @@ class database:
                 return 0
             else:
                 print("Employee found: ")
-                print("{0:<4} {1:<{n}} {2:<15}".format("ID", "Name", "Dept", n=MAXNAMESIZE*2))
-                print("{0:-<4} {0:-<{n}} {0:-<15}".format("", n=MAXNAMESIZE*2))
+                print("{0:<{i}} {1:<{n}} {2:<{d}}".format("ID", "Name", "Dept",i=IDLENGTH, n=MAXNAMESIZE*2, d=MAXNAMESIZE))
+                print("{0:-<{i}} {0:-<{n}} {0:-<{d}}".format("", i=IDLENGTH, n=MAXNAMESIZE*2, d=MAXNAMESIZE))
                 self.printEmployee(f)
                 verify = input("\nAre you sure you with to delete this employee (y/n)? " )
                 if(verify == 'y'):
@@ -162,8 +161,8 @@ class database:
     #Print whole database, formatted
     ##################################
         try:
-            print("{0:<4} {1:<{n}} {2:<15}".format("ID", "Name", "Dept", n=MAXNAMESIZE*2))
-            print("{0:-<4} {0:-<{n}} {0:-<15}".format("", n=MAXNAMESIZE*2))
+            print("{0:<{i}} {1:<{n}} {2:<{d}}".format("ID", "Name", "Dept",i=IDLENGTH, n=MAXNAMESIZE*2, d=MAXNAMESIZE))
+            print("{0:-<{i}} {0:-<{n}} {0:-<{d}}".format("", i=IDLENGTH, n=MAXNAMESIZE*2, d=MAXNAMESIZE))
             with open(self.infile, 'r') as file:
                     for line in file:
                         line = line.rstrip()
@@ -181,4 +180,4 @@ class database:
     def printEmployee(self, fields):
     #Print an Employee line, Employee field passed
     ##################################
-        print("{0:<4} {1:<{n}} {2:<{n}} {3:<15}".format(fields[ID], fields[FIRST], fields[LAST], fields[DEPT], n=MAXNAMESIZE))
+        print("{0:<{i}} {1:<{n}} {2:<{n}} {3:<{d}}".format(fields[ID], fields[FIRST], fields[LAST], fields[DEPT], i=IDLENGTH, n=MAXNAMESIZE, d=MAXNAMESIZE))

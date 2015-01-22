@@ -14,4 +14,4 @@ Additional Information:
 
 -if input file does not exist, program will prompt for creation.
 
-
+-database class is implemented and instantiated with input file.
