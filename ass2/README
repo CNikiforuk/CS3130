@@ -4,7 +4,7 @@ Date: Jan 29, 2015
 
 https://github.com/CNikiforuk/CS3130/tree/master/ass2
 
-Description: Basic database program in Python. 
+Description: Basic dictionary program in python. Displays all words from input file, and their frequency. 
 
 How to use the program:
 
