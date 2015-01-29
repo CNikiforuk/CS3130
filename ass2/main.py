@@ -3,10 +3,10 @@
 import sys
 import dictFunc
 
-MAXWORDSIZE = 100
-
 ################--Description--#################
-#Dict
+#Dictionary program, generates a word table with frequency, and a visual histogram representation.
+#Max word width is set to largest word found in dictionary.
+#All extra spaces and non-aplha characters are removed.
 
 ################-----Author-----#################
 #Carlos Nikiforuk
