@@ -7,7 +7,7 @@ import argparse, random, socket, sys
 
 MAX_BYTES = 65535
 
-def server(interface, port):                                        #SERVER
+def server(interface, port):
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.bind((interface, port))
     print('Listening at', sock.getsockname())
@@ -21,7 +21,7 @@ def server(interface, port):                                        #SERVER
         message = 'Your data was {} bytes long'.format(len(data))
         sock.sendto(message.encode('ascii'), address)
 
-def client(hostname, port):                                          #CLIENT
+def client(hostname, port):
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     hostname = sys.argv[2]
     sock.connect((hostname, port))

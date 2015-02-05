@@ -86,8 +86,8 @@ class database:
                             fields = line.split(":")
                             if(fields[ID] == id):
                                 print("\nEmployee {0} Found!".format(fields[ID]))
-                                print("{0:<{i}} {1:<{n}} {2:<{d}}".format("ID", "Name", "Dept", n=MAXNAMESIZE*2, d=MAXNAMESIZE, i=IDLENGTH))
-                                print("{0:-<{i}} {0:-<{n}} {0:-<{d}}".format("", n=MAXNAMESIZE*2, d=MAXNAMESIZE, i=IDLENGTH))
+                                print("{0:<{i}} {1:<{n}} {2:<{d}}".format("ID", "Name", "Dept", n=MAXNAMESIZE*2, d=MAXNAMESIZE))
+                                print("{0:-<{i}} {0:-<{n}} {0:-<{d}}".format("", n=MAXNAMESIZE*2, d=MAXNAMESIZE))
                                 self.printEmployee(fields)
                                 return
 
@@ -97,6 +97,8 @@ class database:
             print("Error: Incomplete string!")
         except TypeError:
             print("Error: Bad String!")
+        except Exception as e:
+            print("Error: ",e)
 
     ##################################
     def getEmployee(self, id):
