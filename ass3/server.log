@@ -3,3 +3,33 @@ Feb 12 2015 12:24:41: francoc logged in. Address:  ('127.0.0.1', 54954)
 Feb 12 2015 12:24:44: francoc: whoison
 Feb 12 2015 12:24:53: francoc: send hello hey hello!
 Feb 12 2015 12:25:05: francoc: signout
+Feb 12 2015 14:20:19: Login attempt by: ('127.0.0.1', 34568)
+Feb 12 2015 14:20:19: francoc logged in. Address:  ('127.0.0.1', 34568)
+Feb 12 2015 14:22:02: : s
+Feb 12 2015 14:22:13: : sdwfqds
+Feb 12 2015 14:22:17: Login attempt by: ('127.0.0.1', 34568)
+Feb 12 2015 14:22:30: Login attempt by: ('127.0.0.1', 34396)
+Feb 12 2015 14:22:30: guest logged in. Address:  ('127.0.0.1', 34396)
+Feb 12 2015 14:28:22: Login attempt by: ('127.0.0.1', 51644)
+Feb 12 2015 14:28:25: Login attempt by: ('127.0.0.1', 51644)
+Feb 12 2015 14:28:25: guest logged in. Address:  ('127.0.0.1', 51644)
+Feb 12 2015 14:28:30: guest: whoison
+Feb 12 2015 14:29:29: : whoison
+Feb 12 2015 14:29:35: : whoison
+Feb 12 2015 14:37:20: Login attempt by: ('127.0.0.1', 60174)
+Feb 12 2015 14:37:20: guest logged in. Address:  ('127.0.0.1', 60174)
+Feb 12 2015 14:37:23: guest: whoison
+Feb 12 2015 14:43:11: Login attempt by: ('127.0.0.1', 60174)
+Feb 12 2015 14:43:11: guest logged in. Address:  ('127.0.0.1', 60174)
+Feb 12 2015 14:54:40: Login attempt by: ('127.0.0.1', 33617)
+Feb 12 2015 14:54:40: guest logged in. Address:  ('127.0.0.1', 33617)
+Feb 12 2015 14:54:42: guest: signout
+Feb 12 2015 14:55:37: Login attempt by: ('127.0.0.1', 44352)
+Feb 12 2015 14:55:37: guest logged in. Address:  ('127.0.0.1', 44352)
+Feb 12 2015 14:55:46: guest: whoison
+Feb 12 2015 14:55:50: guest: signout
+Feb 12 2015 14:56:02: Login attempt by: ('127.0.0.1', 45336)
+Feb 12 2015 14:56:02: guest logged in. Address:  ('127.0.0.1', 45336)
+Feb 12 2015 14:56:14: guest: send francoc Hey Franco!
+Feb 12 2015 14:57:24: Login attempt by: ('127.0.0.1', 35313)
+Feb 12 2015 14:57:24: guest logged in. Address:  ('127.0.0.1', 35313)

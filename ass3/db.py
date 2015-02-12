@@ -60,6 +60,7 @@ class database:
         for k in self.users.keys():
             if(self.users[k][0] == address):
                 return k
+        return -1
 
 class user:
     def __init__(self, name, pw):
