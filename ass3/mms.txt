@@ -1,0 +1,5 @@
+Message Types
+-1: failed message
+0: Login Message
+1: Outgoing message
+2: ping?

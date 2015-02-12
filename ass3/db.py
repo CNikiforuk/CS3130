@@ -6,23 +6,42 @@ class database:
 
     def __init__(self, infile):
         self.infile = infile
-        self.users = []
+        self.users = {}
         file = open(self.infile, 'r')
         for line in file:
             line = line.rstrip()
             if line:
-                name, pw = line.split(":")
-                self.users.append([name, pw, 0])
+                name, pw = line.split(':',1)
+                self.users[name] = [(), pw, 0]
                 
-    def loginUser(self, line):
-        name, pw = line.split(':')
-        for i in range(len(self.users)):
-            if (self.users[i][0] == name):
-                if(self.users[i][1] == pw):
-                    self.users[i][2] = 1
+    def loginUser(self, name, pw, address):
+        if (name in self.users):
+            if(self.users[name][1] == pw):
+                if(self.users[name][2]==1):
                     return 1
+                else:
+                    self.users[name][0] = address
+                    self.users[name][2] = 1
+                    print("User "+name+" logged in:")
+                    print(self.users[name][0])
+                    return 0
             
-        return 0
+        return -1
+        
+    def signOut(self, name):
+        self.users[name][2] = 0
+        
+    def whoison(self):
+        online = ''
+        for k in self.users.keys():
+            if(self.users[k][2] == 1):
+                online = online+k+'\n>>'
+        return online
+        
+    def getUser(self, address):
+        for k in self.users.keys():
+            if(self.users[k][0] == address):
+                return k
 
 class user:
     def __init__(self, name, pw):
@@ -41,4 +60,5 @@ def main():
         print("name: ",db.users[i][0]," pass: ",db.users[i][1]," online: ",db.users[i][2])
     print(db.loginUser("car:super"))
 
-#main()
+if __name__ == '__main__':
+    main()
