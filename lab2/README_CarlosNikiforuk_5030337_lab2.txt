@@ -10,6 +10,4 @@ How to use the program:
 
 1. python3 RE.py
 
-
 Additional Information:
-
