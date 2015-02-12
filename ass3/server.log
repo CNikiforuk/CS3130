@@ -1,0 +1,5 @@
+Feb 12 2015 12:24:41: Login attempt by: ('127.0.0.1', 54954)
+Feb 12 2015 12:24:41: francoc logged in. Address:  ('127.0.0.1', 54954)
+Feb 12 2015 12:24:44: francoc: whoison
+Feb 12 2015 12:24:53: francoc: send hello hey hello!
+Feb 12 2015 12:25:05: francoc: signout
