@@ -60,6 +60,8 @@ signout
 
 -Undelivered messages are kept in file located at messages/<username>
 
+-The users logged on is kept in memory, rather than a file. This means if the server restarts the users logged on at that time will need to sign in and authorize themselves again.
+
 -You cannot sign in if the server detects you are already online. I chose this option over kicking someone off.
 This does raise the issue where if the client terminates without signing out, the server will think you are online.
 The simple solution is to restart the server, future implementations could check every so often to see if client is alive.

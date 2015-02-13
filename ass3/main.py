@@ -11,7 +11,9 @@
 # -1: failure
 # 0: login
 # 1: user comm.
-# 5: signout 
+# 5: signout (server signs out client)
+
+# Client is simple, and beyond signing in only sends message types of 1.
 
 import argparse, random, socket, sys, getpass, db, threading, re, os
 from datetime import datetime
@@ -133,6 +135,10 @@ def server(interface, port):                                        #SERVER
                 else:
                     msg = message('1', helpText)
             else:
+                serverPrint = "{}: Force signout of unauthorized user {}".format(datetime.now().strftime('%b %d %Y %H:%M:%S'), repr(address))
+                logFile.write(serverPrint+'\n')
+                logFile.flush()
+                print(serverPrint)
                 msg = message('5','force signout')
         
         #print("Sending out: '" + outMsg.text +"'")

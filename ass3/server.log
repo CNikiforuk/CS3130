@@ -33,3 +33,7 @@ Feb 12 2015 14:56:02: guest logged in. Address:  ('127.0.0.1', 45336)
 Feb 12 2015 14:56:14: guest: send francoc Hey Franco!
 Feb 12 2015 14:57:24: Login attempt by: ('127.0.0.1', 35313)
 Feb 12 2015 14:57:24: guest logged in. Address:  ('127.0.0.1', 35313)
+Feb 13 2015 11:22:11: Login attempt by: ('127.0.0.1', 42448)
+Feb 13 2015 11:22:11: guest logged in. Address:  ('127.0.0.1', 42448)
+Feb 13 2015 11:22:14: guest: whoison
+Feb 13 2015 11:22:38: Force signout of unauthorized user ('127.0.0.1', 42448)
