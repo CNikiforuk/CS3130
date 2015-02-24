@@ -51,10 +51,10 @@ def server(interface, port):                                        #SERVER
     helpText = "The following commands are supported:\n\nwhoIsOn\nsend <user> <message>\nsignout"
 
     try:    
-        logFile = open('server.log', 'r+')
+        logFile = open('server.log', 'r+')      #check if file exists. if not, create one.
     except FileNotFoundError:
         logFile = open('server.log', 'w+')
-    logFile.seek(0,2)       #seek to end of file.
+    logFile.seek(0,2)                           #seek to end of file.
 
     msgFiles = {}
     for k in userDB.users.keys():
@@ -74,14 +74,14 @@ def server(interface, port):                                        #SERVER
         inData, address = sock.recvfrom(MAX_BYTES)
         inMsg = toMessage(inData.decode('ascii'))
         
-        if(inMsg.type == '0'):
+        if(inMsg.type == '0'):  #message type 0 from client means signin attempt
             serverPrint = "{}: Login attempt by: {}".format(datetime.now().strftime('%b %d %Y %H:%M:%S'),repr(address))
             logFile.write(serverPrint+'\n')
             logFile.flush()
             print(serverPrint)
             name, pw = inMsg.text.split(':',1)
             attempt = userDB.loginUser(name, pw, address)
-            if(attempt == 0):
+            if(attempt == 0):   #success
                 serverPrint = "{}: {} logged in. Address:  {}".format(datetime.now().strftime('%b %d %Y %H:%M:%S'), name, repr(address))
                 logFile.write(serverPrint+'\n')
                 logFile.flush()
@@ -96,12 +96,12 @@ def server(interface, port):                                        #SERVER
                 user = userDB.getUser(address)
                 #THREAD DELEGATION MAYBE
                 
-            elif(attempt == -1):
+            elif(attempt == -1): #failure
                 msg = message('-1',"Inocorrect username or password!")
             else:
                 msg = message('-1',"User is already logged in!")
             
-        elif(inMsg.type == '1'):
+        elif(inMsg.type == '1'): #not a signin request
             if(userDB.getUser(address) != -1):
                 serverPrint = "{}: {}: {}".format(datetime.now().strftime('%b %d %Y %H:%M:%S'), user, inMsg.text)
                 logFile.write(serverPrint+'\n')
@@ -129,12 +129,11 @@ def server(interface, port):                                        #SERVER
                 elif(tokens[0] == 'signout'):            
                     msg = message('5', 'Thank you for using MMS!')
                     userDB.signOut(user)
-                    #signout
                 elif(tokens[0] == 'whoison'):
                     msg = message('1',userDB.whoison())
                 else:
                     msg = message('1', helpText)
-            else:
+            else: #user is not recognized, server may have dropped, or user is malicious.
                 serverPrint = "{}: Force signout of unauthorized user {}".format(datetime.now().strftime('%b %d %Y %H:%M:%S'), repr(address))
                 logFile.write(serverPrint+'\n')
                 logFile.flush()
@@ -183,7 +182,7 @@ def receiver(sock):
             data = sock.recv(MAX_BYTES)
             rmsg = toMessage(data.decode('ascii'))
             print('>'+(rmsg.text))
-            if(rmsg.type == '5'):
+            if(rmsg.type == '5'):   #terminate message. Exit program.
                 os._exit(0)
             print('>',end='',flush=True)
         except ConnectionRefusedError:
@@ -210,12 +209,13 @@ def client(hostname, port):                                        #CLIENT
     sock.connect((hostname, port))
     print('Client socket name is {}'.format(sock.getsockname()))
     
+    #login!
     login = message('','')
     while(login.type != '0'):
         login = loginPrompt(sock, 0.1)
         print(login.text)
             
-        
+    #begin threads
     receive = threading.Thread(target=receiver, args=(sock,))
     receive.start()
     send = threading.Thread(target=sender, args=(sock,))
