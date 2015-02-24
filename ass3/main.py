@@ -207,7 +207,6 @@ def sender(sock):
 ##################################
 def client(hostname, port):                                        #CLIENT
 #Main Client
-#beyond signing in, client only sends message types of 1.
 ################################## 
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     hostname = sys.argv[2]
