@@ -71,7 +71,7 @@ def main():
     db = database('users')
     for i in range(len(db.users)):
         print("name: ",db.users[i][0]," pass: ",db.users[i][1]," online: ",db.users[i][2])
-    print(db.loginUser("car:super"))
+    print(db.loginUser("guest:guest"))
 
 if __name__ == '__main__':
     main()
