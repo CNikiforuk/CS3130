@@ -7,13 +7,17 @@
 ###############-----Author-----#################
 #Carlos Nikiforuk
 
-#Message Types
+########-CLIENT/SERVER AD HOC PROTOCOL-#########
+#~~Message format~~
+#<type>:<message>
+#Example: 1:send franco documentation
+#Example signin: 0:guest:guest
+
+#~~Message Types~~
 # -1: failure
 # 0: login
 # 1: user comm.
 # 5: signout (server signs out client)
-
-# Client is simple, and beyond signing in only sends message types of 1.
 
 import argparse, random, socket, sys, getpass, db, threading, re, os
 from datetime import datetime
@@ -203,6 +207,7 @@ def sender(sock):
 ##################################
 def client(hostname, port):                                        #CLIENT
 #Main Client
+#beyond signing in, client only sends message types of 1.
 ################################## 
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     hostname = sys.argv[2]
