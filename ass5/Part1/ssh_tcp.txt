@@ -1,0 +1,15 @@
+ssh -L <Local Port>:<Local Machine>:<Target Port> <Target Machine>.
+
+Steps:
+
+-Run FMS Server on port 2015: 
+    $ python3 main.py server localhost -p 2015
+
+-Run this command in a new terminal: 
+    $ ssh -L 12345:localhost:2015 localhost. Data on port 12345 will be sent to port 2015 on server.
+
+-In that terminal, run client program: 
+    $ python3 main.py client localhost -p 12345
+
+All traffic will be encrypted and sent to 12345.
+

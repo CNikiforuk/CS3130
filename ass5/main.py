@@ -3,8 +3,7 @@
 #Main Module
 #Python client/server TCP database system
 
-#TODO
-#Better Error checking/feedback
+#https://github.com/brandon-rhodes/fopnp/blob/m/py3/chapter06/safe_tls.py
 
 ###############-----Author-----#################
 #Carlos Nikiforuk
