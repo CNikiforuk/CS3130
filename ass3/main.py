@@ -2,22 +2,10 @@
 
 ################--Description--#################
 #Main Module
-#Python client server messaging system
 
 ###############-----Author-----#################
 #Carlos Nikiforuk
 
-########-CLIENT/SERVER AD HOC PROTOCOL-#########
-#~~Message format~~
-#<type>:<message>
-#Example: 1:send franco documentation
-#Example signin: 0:guest:guest
-
-#~~Message Types~~
-# -1: failure
-# 0: login
-# 1: user comm.
-# 5: signout (server signs out client)
 
 import argparse, random, socket, sys, getpass, db, threading, re, os
 from datetime import datetime
@@ -106,7 +94,8 @@ def server(interface, port):                                        #SERVER
                 msg = message('-1',"User is already logged in!")
             
         elif(inMsg.type == '1'): #not a signin request
-            if(userDB.getUser(address) != -1):
+            user = userDB.getUser(address)
+            if(user != -1):
                 serverPrint = "{}: {}: {}".format(datetime.now().strftime('%b %d %Y %H:%M:%S'), user, inMsg.text)
                 logFile.write(serverPrint+'\n')
                 logFile.flush()

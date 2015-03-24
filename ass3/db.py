@@ -47,11 +47,14 @@ class database:
     def whoison(self):
     #return who is online as a string
     ##################################
-        online = ''
+        online = 'Online: '
+        offline = 'Offline: '
         for k in self.users.keys():
             if(self.users[k][2] == 1):
-                online = online+k+'\n>>'
-        return online
+                online = online+k+', '
+            else:
+                offline = offline+k+', '
+        return online+'\n>>'+offline+'\n'
     
     ##################################
     def getUser(self, address):

@@ -19,3 +19,49 @@ Feb 13 2015 11:22:11: Login attempt by: ('127.0.0.1', 42448)
 Feb 13 2015 11:22:11: guest logged in. Address:  ('127.0.0.1', 42448)
 Feb 13 2015 11:22:14: guest: whoison
 Feb 13 2015 11:22:38: Force signout of unauthorized user ('127.0.0.1', 42448)
+Mar 24 2015 09:53:15: Login attempt by: ('127.0.0.1', 51315)
+Mar 24 2015 09:53:15: francoc logged in. Address:  ('127.0.0.1', 51315)
+Mar 24 2015 09:53:20: francoc: whoIsOn
+Mar 24 2015 09:54:01: francoc: help
+Mar 24 2015 09:54:34: Login attempt by: ('127.0.0.1', 41214)
+Mar 24 2015 09:54:34: guest logged in. Address:  ('127.0.0.1', 41214)
+Mar 24 2015 09:54:40: guest: whoison
+Mar 24 2015 09:54:51: guest: whoison
+Mar 24 2015 09:55:05: guest: send guest hello
+Mar 24 2015 09:55:22: guest: send franco hello
+Mar 24 2015 09:55:27: guest: send francoc hello
+Mar 24 2015 09:55:43: guest: send guest wtf
+Mar 24 2015 09:55:48: guest: send francoc wtf
+Mar 24 2015 09:57:43: Login attempt by: ('127.0.0.1', 41061)
+Mar 24 2015 09:57:43: francoc logged in. Address:  ('127.0.0.1', 41061)
+Mar 24 2015 09:57:47: francoc: whoison
+Mar 24 2015 09:58:13: Login attempt by: ('127.0.0.1', 40476)
+Mar 24 2015 09:58:13: hello logged in. Address:  ('127.0.0.1', 40476)
+Mar 24 2015 09:58:16: hello: whoison
+Mar 24 2015 09:58:22: hello: send francoc hello
+Mar 24 2015 09:58:45: hello: send hello yo dude
+Mar 24 2015 09:59:01: hello: send hello omg
+Mar 24 2015 09:59:06: hello: send francoc wtf
+Mar 24 2015 10:00:59: Login attempt by: ('127.0.0.1', 49633)
+Mar 24 2015 10:00:59: francoc logged in. Address:  ('127.0.0.1', 49633)
+Mar 24 2015 10:01:08: francoc: whoison
+Mar 24 2015 10:01:28: Login attempt by: ('127.0.0.1', 37330)
+Mar 24 2015 10:01:28: guest logged in. Address:  ('127.0.0.1', 37330)
+Mar 24 2015 10:01:33: guest: whoison
+Mar 24 2015 10:01:46: guest: send francoc hello
+Mar 24 2015 10:03:24: Login attempt by: ('127.0.0.1', 55121)
+Mar 24 2015 10:03:24: francoc logged in. Address:  ('127.0.0.1', 55121)
+Mar 24 2015 10:03:30: Login attempt by: ('127.0.0.1', 52040)
+Mar 24 2015 10:03:30: guest logged in. Address:  ('127.0.0.1', 52040)
+Mar 24 2015 10:03:33: guest: whoison
+Mar 24 2015 10:03:36: guest: send guest ok
+Mar 24 2015 10:03:54: francoc: send francoc I think it's working
+Mar 24 2015 10:07:58: Login attempt by: ('127.0.0.1', 46109)
+Mar 24 2015 10:07:58: francoc logged in. Address:  ('127.0.0.1', 46109)
+Mar 24 2015 10:08:01: francoc: whoison
+Mar 24 2015 10:09:05: Login attempt by: ('127.0.0.1', 59699)
+Mar 24 2015 10:09:05: francoc logged in. Address:  ('127.0.0.1', 59699)
+Mar 24 2015 10:09:09: francoc: whoison
+Mar 24 2015 10:10:15: Login attempt by: ('127.0.0.1', 36743)
+Mar 24 2015 10:10:15: francoc logged in. Address:  ('127.0.0.1', 36743)
+Mar 24 2015 10:10:17: francoc: whoison
