@@ -57,8 +57,13 @@ def client(host, port):
     print('Client has been assigned socket name', sock.getsockname())
 
     while True:
+        
         choice = user.displayMenu()
-
+        while (choice.lower() == 'help'):
+            user.helpMenu()
+            input("Press any key to contiue...")
+            choice = user.displayMenu()
+        
         if(int(choice) == ADD):
             text = user.addEmployee()
         elif(int(choice) == FIND):

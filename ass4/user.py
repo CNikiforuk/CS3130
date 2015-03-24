@@ -25,10 +25,21 @@ def displayMenu():
     print("    5) Quit")
     
     a = input("\nOption? ")
-    while(a < '1' or a > '5'):
+    while((a < '1' or a > '5') and a.lower() != 'help'):
         print("Invalid input")
         a = input("\nOption? ")
     return a
+
+##################################
+def helpMenu():
+#display start menu 
+##################################
+    print("Employee FMS is a tcp server/client database program.\n")
+    print("    1) Adds a new employee to the database. ID, Name, Department.")
+    print("    2) Searches for a specified employee by their ID.")   
+    print("    3) Removes the employee from the database. Requires ID.")
+    print("    4) Will display everyone in the database and their information")
+    print("    5) Sends quit signal to server, and will then terminate the program.\n")
 
 ##################################
 def padString(string, char, reqSize):
