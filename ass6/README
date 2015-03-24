@@ -1,0 +1,18 @@
+Author: Carlos Nikiforuk
+CS 3130 Ass #6
+Date: March 26, 2015
+
+https://github.com/CNikiforuk/CS3130/tree/master/ass6
+
+--------------------Description---------------------
+
+Python HTML scraping script to acquire market info from Mail and Globe.
+http://www.theglobeandmail.com/globe-investor/
+
+How to use the program:
+1. python3 scrape.py
+2. select which market info you wish to see.
+
+--------------Additional Information----------------
+
+-Will only run if status code 200 is received from URL
