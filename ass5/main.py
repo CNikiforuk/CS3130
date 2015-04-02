@@ -9,18 +9,20 @@
 #Carlos Nikiforuk
 
 
-import argparse, socket, sys, threading, user, dbm, dbLog
+import argparse, socket, sys, threading, ssl, user, dbm, dbLog
 from datetime import datetime
-
 
 ADD, FIND, REMOVE, SHOW, EXIT = range(1,6)
 MDict = {ADD:"ADD", FIND:"FIND", REMOVE:"REMOVE", SHOW:"SHOW", EXIT:"EXIT"}
 delimiter = '\0'
 
 ##################################    
-def server(interface, port):
+def server(interface, port, certfile, cafile=None):
 #main server
 ################################## 
+    purpose = ssl.Purpose.CLIENT_AUTH
+    context = ssl.create_default_context(purpose, cafile=cafile)
+    context.load_cert_chain(certfile)
     
     #create log and db objects
     log = dbLog.log('db.log')
@@ -29,31 +31,39 @@ def server(interface, port):
     dbSem = threading.Semaphore()
     
     threads = []
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    sock.bind((interface, port))
-    sock.listen(1)
-    print('Listening at', sock.getsockname())
+    listener = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    listener.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    listener.bind((interface, port))
+    listener.listen(1)
+    print('Listening at', listener.getsockname())
     while True:
         print('Waiting to accept a new connection')
-        sc, sockname = sock.accept()
+        rawSock, sockname = listener.accept()
         print('  Connection accepted from', sockname)
-        print('  Socket name:', sc.getsockname())
-        print('  Socket peer:', sc.getpeername())
+        print('  Socket name:', rawSock.getsockname())
+        print('  Socket peer:', rawSock.getpeername())
+        
+        sock = context.wrap_socket(rawSock, server_side=True)
+        
         print('  Creating Thread: #', len(threads))
-        t = threading.Thread(target=serverCon, args=(sc,employeeDB, dbSem, log,))
+        t = threading.Thread(target=serverCon, args=(sock,employeeDB, dbSem, log,))
         threads.append(t)
         t.start()
 
 ##################################
-def client(host, port):
+def client(host, port, cafile=None):
 #Main Client
 ##################################
     import user
+    
+    purpose = ssl.Purpose.SERVER_AUTH
+    context = ssl.create_default_context(purpose, cafile=cafile)
 
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.connect((host, port))
-    print('Client has been assigned socket name', sock.getsockname())
+    rawSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    rawSock.connect((host, port))
+    print('Client has been assigned socket name', rawSock.getsockname())
+    
+    sock = context.wrap_socket(rawSock, server_hostname=host)
 
     while True:
         choice = user.displayMenu()
@@ -171,13 +181,13 @@ def recvall(sock):
 
 
 if __name__ == '__main__':
-    choices = {'client': client, 'server': server}
-    parser = argparse.ArgumentParser(description='Send and receive over TCP')
-    parser.add_argument('role', choices=choices, help='which role to play')
-    parser.add_argument('host', help='interface the server listens at;'
-                        ' host the client sends to')
-    parser.add_argument('-p', metavar='PORT', type=int, default=2015,
-                        help='TCP port (default 2015)')
+    parser = argparse.ArgumentParser(description='Safe TLS client and server')
+    parser.add_argument('host', help='hostname or IP address')
+    parser.add_argument('port', type=int, help='TCP port number')
+    parser.add_argument('-a', metavar='cafile', default=None,help='authority: path to CA certificate PEM file')
+    parser.add_argument('-s', metavar='certfile', default=None,help='run as server: path to server PEM file')
     args = parser.parse_args()
-    function = choices[args.role]
-    function(args.host, args.p)
+    if args.s:
+        server(args.host, args.port, args.s, args.a)
+    else:
+        client(args.host, args.port, args.a)
