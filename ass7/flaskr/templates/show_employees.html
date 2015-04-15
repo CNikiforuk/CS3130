@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <ul class=employees>
+    <li><h2>&#60ID&#62: &#60Name&#62</h2>&#60Department&#62</h2>
+    <br></br>
+    {% for entry in employees %}
+      <li><h2>{{ entry.id }}: {{ entry.name }}</h2>{{ entry.department|safe }}
+    {% else %}
+      <li><em>Unbelievable.  No Employees found.</em>
+    {% endfor %}
+    </ul>
+  {% else %}
+    
+  {% endif %}
+{% endblock %}

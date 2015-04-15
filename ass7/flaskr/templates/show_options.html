@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <h2>Options</h2>
+        <ul>
+        <li><l1><a href="{{ add }}">Add</a><l1>
+        <li><l1><a href="{{ search }}">Search</a><l1>        
+        <li><l1><a href="{{ show }}">Show</a><l1>
+        <li><l1><a href="{{ remove }}">Remove</a><l1>
+        </ul>
+  {% else %}
+    NOT WAKAKAKAK
+  {% endif %}
+{% endblock %}
