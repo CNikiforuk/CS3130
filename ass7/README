@@ -1,0 +1,23 @@
+Author: Carlos Nikiforuk
+CS 3130 Ass #7
+Date: Apr 14, 2015
+
+https://github.com/CNikiforuk/CS3130/tree/master/ass7
+
+--------------------Description---------------------
+
+Employee database using Python with Flask microframework and sqlite3
+
+How to use the program:
+1. python flaskr.py
+2. using a web browser, go to url localhost:5000
+3. login credentials are admin/default
+
+--------------Additional Information----------------
+
+To init the database if necessary:
+1. python
+2. >import init_db from flaskr
+3. >init_db()
+
+-very basic, no error checking. Might add more later.
