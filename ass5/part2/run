@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo Running Assignment 5...
+python3 main.py localhost 1234 -a ca.crt -s localhost.pem
