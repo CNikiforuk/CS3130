@@ -101,13 +101,13 @@ def add_employee():
     if(len(request.form['name']) > MAXENTRYSIZE):
         flash('Invalid name. Too long')
         return redirect(url_for('add_form'))
-    if(not re.match("[a-zA-Z]+" ,request.form['name'])):
+    if(re.search("[^ a-zA-Z]" ,request.form['name'])):
         flash('Invalid name. Must be alphabetic')
         return redirect(url_for('add_form'))
     if(len(request.form['department']) > MAXENTRYSIZE):
         flash('Invalid department. Too long')
         return redirect(url_for('add_form'))
-    if(not re.match("[\w]+" ,request.form['name'])):
+    if(re.search("[^ \w]" ,request.form['department'])):
         flash('Invalid department string. Must be alphanumeric')
         return redirect(url_for('add_form'))
 
