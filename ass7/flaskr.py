@@ -4,7 +4,7 @@
 #Carlos Nikiforuk
 
 # all the imports
-import sqlite3
+import sqlite3, re
 from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
 from contextlib import closing
@@ -15,6 +15,8 @@ DEBUG = True
 SECRET_KEY = 'development key'
 USERNAME = 'admin'
 PASSWORD = 'default'
+
+MAXENTRYSIZE = 30
 
 # create our little application
 app = Flask(__name__)
@@ -94,8 +96,23 @@ def add_form():
 def add_employee():
     if not session.get('logged_in'):
         abort(401)
+
+    #error check name and department
+    if(len(request.form['name']) > MAXENTRYSIZE):
+        flash('Invalid name. Too long')
+        return redirect(url_for('add_form'))
+    if(not re.match("[a-zA-Z]+" ,request.form['name'])):
+        flash('Invalid name. Must be alphabetic')
+        return redirect(url_for('add_form'))
+    if(len(request.form['department']) > MAXENTRYSIZE):
+        flash('Invalid department. Too long')
+        return redirect(url_for('add_form'))
+    if(not re.match("[\w]+" ,request.form['name'])):
+        flash('Invalid department string. Must be alphanumeric')
+        return redirect(url_for('add_form'))
+
     g.db.execute('insert into employees (name, department) values (?, ?)',
-                 [request.form['name'], request.form['department']])
+             [request.form['name'], request.form['department']])
     g.db.commit()
     flash('New entry was successfully added')
     return redirect(url_for('show_options'))
