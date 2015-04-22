@@ -64,15 +64,20 @@ def login():
 # options page with refs to forms
 @app.route('/options')
 def show_options():
-    add = url_for('add_form')
-    search = url_for('search_form')
-    remove = url_for('remove_form')
-    show = url_for('show_employees')
-    return render_template('show_options.html', add=add, show=show, remove=remove, search=search)
+    if session.get('logged_in'):
+        add = url_for('add_form')
+        search = url_for('search_form')
+        remove = url_for('remove_form')
+        show = url_for('show_employees')
+        return render_template('show_options.html', add=add, show=show, remove=remove, search=search)
+    else:
+        return redirect(url_for('login'))
 
 # show employees
 @app.route('/show')
 def show_employees():
+    if not session.get('logged_in'):
+        abort(401)
     cur = g.db.execute('select id, name, department from employees order by id asc')
     employees = [dict(id=row[0], name=row[1], department=row[2]) for row in cur.fetchall()]
     return render_template('show_employees.html', employees=employees)
