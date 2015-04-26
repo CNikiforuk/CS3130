@@ -30,6 +30,6 @@ Additionally, a test program is included demonstrating scrape as an import.
 
 -Be cautious if scraping music or video formats in quiet mode (you wont get asked before downloading).
 
--It may be possible that images with badly formed URL's may not be captured.
+-Some image locations are not handled, or very badly formed image urls may throw an exception. But almost everything is captured from my experience.
 
 
