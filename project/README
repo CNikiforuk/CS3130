@@ -1,0 +1,35 @@
+Author: Carlos Nikiforuk
+CS 3130 Ass #6
+Date: April 26, 2015
+
+https://github.com/CNikiforuk/CS3130/tree/master/project
+
+--------------------Description---------------------
+
+Python HTML scraping program to acquire files from given URL.
+
+How to use the program:
+
+1. Edit config file to choose file types to scrape (default is image formats)
+2. python3 scrape.py -f <folder> -q
+
+Additionally, a test program is included demonstrating scrape as an import.
+
+---------------------Arguments----------------------
+
+-q is an optional argument for quiet mode. Quiet mode will suppress any prompts, and continue to run the program.
+
+-f <folder> is an optional argument to specify the folder you wish to download to. Default is ./files.
+
+
+--------------Additional Information----------------
+
+-If there is an error loading from the config file, the default will be image files.
+
+-Will try to scrape any file type that is set in the config file.
+
+-Be cautious if scraping music or video formats in quiet mode (you wont get asked before downloading).
+
+-It may be possible that images with badly formed URL's may not be captured.
+
+
