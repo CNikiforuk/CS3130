@@ -11,7 +11,7 @@ Python HTML scraping program to acquire files from given URL.
 How to use the program:
 
 1. Edit config file to choose file types to scrape (default is image formats)
-2. python3 scrape.py -f <folder> -q
+2. python3 scrape.py <url> -f <folder> -q
 
 Additionally, a test program is included demonstrating scrape as an import.
 
